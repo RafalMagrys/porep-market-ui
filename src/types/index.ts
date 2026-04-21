@@ -42,6 +42,18 @@ export const DEAL_STATE_LABELS: Record<DealState, string> = {
   [DealState.Terminated]: 'Terminated',
 }
 
+export interface SLIThresholds {
+  retrievabilityBps: number
+  bandwidthMbps: number
+  latencyMs: number
+  indexingPct: number
+}
+
+export interface Attestation {
+  lastUpdate: bigint
+  slis: SLIThresholds
+}
+
 export interface ProviderCapabilities {
   retrievabilityBps: number
   bandwidthMbps: number

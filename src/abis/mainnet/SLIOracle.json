@@ -1,0 +1,170 @@
+[
+  {
+    "type": "constructor",
+    "inputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "DEFAULT_ADMIN_ROLE",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "bytes32", "internalType": "bytes32" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "ORACLE_ROLE",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "bytes32", "internalType": "bytes32" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "UPGRADER_ROLE",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "bytes32", "internalType": "bytes32" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "UPGRADE_INTERFACE_VERSION",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "string", "internalType": "string" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getAttestation",
+    "inputs": [{ "name": "provider", "type": "uint64", "internalType": "CommonTypes.FilActorId" }],
+    "outputs": [
+      {
+        "name": "attestation",
+        "type": "tuple",
+        "internalType": "struct SLITypes.Attestation",
+        "components": [
+          { "name": "lastUpdate", "type": "uint256", "internalType": "uint256" },
+          {
+            "name": "slis",
+            "type": "tuple",
+            "internalType": "struct SLITypes.SLIThresholds",
+            "components": [
+              { "name": "retrievabilityBps", "type": "uint16", "internalType": "uint16" },
+              { "name": "bandwidthMbps", "type": "uint16", "internalType": "uint16" },
+              { "name": "latencyMs", "type": "uint16", "internalType": "uint16" },
+              { "name": "indexingPct", "type": "uint8", "internalType": "uint8" }
+            ]
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getRoleAdmin",
+    "inputs": [{ "name": "role", "type": "bytes32", "internalType": "bytes32" }],
+    "outputs": [{ "name": "", "type": "bytes32", "internalType": "bytes32" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "grantRole",
+    "inputs": [
+      { "name": "role", "type": "bytes32", "internalType": "bytes32" },
+      { "name": "account", "type": "address", "internalType": "address" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "hasRole",
+    "inputs": [
+      { "name": "role", "type": "bytes32", "internalType": "bytes32" },
+      { "name": "account", "type": "address", "internalType": "address" }
+    ],
+    "outputs": [{ "name": "", "type": "bool", "internalType": "bool" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "initialize",
+    "inputs": [
+      { "name": "admin", "type": "address", "internalType": "address" },
+      { "name": "oracle", "type": "address", "internalType": "address" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "multicall",
+    "inputs": [{ "name": "data", "type": "bytes[]", "internalType": "bytes[]" }],
+    "outputs": [{ "name": "results", "type": "bytes[]", "internalType": "bytes[]" }],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "proxiableUUID",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "bytes32", "internalType": "bytes32" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "renounceRole",
+    "inputs": [
+      { "name": "role", "type": "bytes32", "internalType": "bytes32" },
+      { "name": "callerConfirmation", "type": "address", "internalType": "address" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "revokeRole",
+    "inputs": [
+      { "name": "role", "type": "bytes32", "internalType": "bytes32" },
+      { "name": "account", "type": "address", "internalType": "address" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "setSLI",
+    "inputs": [
+      { "name": "provider", "type": "uint64", "internalType": "CommonTypes.FilActorId" },
+      {
+        "name": "slis",
+        "type": "tuple",
+        "internalType": "struct SLITypes.SLIThresholds",
+        "components": [
+          { "name": "retrievabilityBps", "type": "uint16", "internalType": "uint16" },
+          { "name": "bandwidthMbps", "type": "uint16", "internalType": "uint16" },
+          { "name": "latencyMs", "type": "uint16", "internalType": "uint16" },
+          { "name": "indexingPct", "type": "uint8", "internalType": "uint8" }
+        ]
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "supportsInterface",
+    "inputs": [{ "name": "interfaceId", "type": "bytes4", "internalType": "bytes4" }],
+    "outputs": [{ "name": "", "type": "bool", "internalType": "bool" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "upgradeToAndCall",
+    "inputs": [
+      { "name": "newImplementation", "type": "address", "internalType": "address" },
+      { "name": "data", "type": "bytes", "internalType": "bytes" }
+    ],
+    "outputs": [],
+    "stateMutability": "payable"
+  }
+]

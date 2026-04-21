@@ -1,9 +1,15 @@
 import DevnetPoRepMarketAbi from '@/abis/devnet/PoRepMarket.json'
 import DevnetSPRegistryAbi from '@/abis/devnet/SPRegistry.json'
+import DevnetSLIOracleAbi from '@/abis/devnet/SLIOracle.json'
+import DevnetSLIScorerAbi from '@/abis/devnet/SLIScorer.json'
 import CalibnetPoRepMarketAbi from '@/abis/calibnet/PoRepMarket.json'
 import CalibnetSPRegistryAbi from '@/abis/calibnet/SPRegistry.json'
+import CalibnetSLIOracleAbi from '@/abis/calibnet/SLIOracle.json'
+import CalibnetSLIScorerAbi from '@/abis/calibnet/SLIScorer.json'
 import MainnetPoRepMarketAbi from '@/abis/mainnet/PoRepMarket.json'
 import MainnetSPRegistryAbi from '@/abis/mainnet/SPRegistry.json'
+import MainnetSLIOracleAbi from '@/abis/mainnet/SLIOracle.json'
+import MainnetSLIScorerAbi from '@/abis/mainnet/SLIScorer.json'
 import { Address } from 'viem'
 
 export type ContractAddresses = {
@@ -12,6 +18,7 @@ export type ContractAddresses = {
   CLIENT_CONTRACT: Address
   VALIDATOR_FACTORY: Address
   SLI_ORACLE: Address
+  SLI_SCORER: Address
   META_ALLOCATOR: Address
   FILECOIN_PAY: Address
   USDC_TOKEN: Address
@@ -29,6 +36,7 @@ export const NETWORKS: Record<NetworkKey, { label: string; chainId: number; cont
       CLIENT_CONTRACT: '0x0A27549D92Cc22b9710c8450e0976A08335B81AE',
       VALIDATOR_FACTORY:'0xECDB7986e2c8f3Af461e47D585d91541b3a38747',
       SLI_ORACLE:      '0x52569e93e42f0EB14BF8B7Bc0DFf6E938EB3b13C',
+      SLI_SCORER:      '0xf4c4DBCdAA22034AA24CD89A60dDa5E4679F2E56',
       META_ALLOCATOR:  '0xB7a4A5f347a6E7142798D0a801894A00B8a14790',
       FILECOIN_PAY:    '0xaC3fa2dBA7AA202Eab134713fE3AAF11Ed717b97',
       USDC_TOKEN:      '0xEfD8D9E92eA91Fa2B6088790A36bA67342E07F0A',
@@ -43,6 +51,7 @@ export const NETWORKS: Record<NetworkKey, { label: string; chainId: number; cont
       CLIENT_CONTRACT: '0x0000000000000000000000000000000000000000',
       VALIDATOR_FACTORY:'0x0000000000000000000000000000000000000000',
       SLI_ORACLE:      '0x0000000000000000000000000000000000000000',
+      SLI_SCORER:      '0x0000000000000000000000000000000000000000',
       META_ALLOCATOR:  '0x0000000000000000000000000000000000000000',
       FILECOIN_PAY:    '0x0000000000000000000000000000000000000000',
       USDC_TOKEN:      '0x0000000000000000000000000000000000000000',
@@ -57,6 +66,7 @@ export const NETWORKS: Record<NetworkKey, { label: string; chainId: number; cont
       CLIENT_CONTRACT: '0x4B099b9eCa7d3872Fa8F9B72b913119B4F08c5ED',
       VALIDATOR_FACTORY:'0x1814d77CDef6297e9E015667d912aE11ae6f68D8',
       SLI_ORACLE:      '0x09c513F1C68d74b69a9550745BB779F346556577',
+      SLI_SCORER:      '0xAe15E4f7287C1ea29477f0A98C39ca67166fC192',
       META_ALLOCATOR:  '0x1e15357F252FF44d2CebEA99FDB1E0858018cCE1',
       FILECOIN_PAY:    '0x23b1e018F08BB982348b15a86ee926eEBf7F4DAa',
       USDC_TOKEN:      '0x0000000000000000000000000000000000000000',
@@ -64,20 +74,31 @@ export const NETWORKS: Record<NetworkKey, { label: string; chainId: number; cont
   },
 }
 
-export type NetworkAbis = { PoRepMarketAbi: typeof DevnetPoRepMarketAbi, SpRegistryAbi: typeof DevnetSPRegistryAbi }
+export type NetworkAbis = {
+  PoRepMarketAbi: typeof DevnetPoRepMarketAbi
+  SpRegistryAbi: typeof DevnetSPRegistryAbi
+  SLIOracleAbi: typeof DevnetSLIOracleAbi
+  SLIScorerAbi: typeof DevnetSLIScorerAbi
+}
 
-export const ABIS : Record<NetworkKey, NetworkAbis> = {
+export const ABIS: Record<NetworkKey, NetworkAbis> = {
   devnet: {
     PoRepMarketAbi: DevnetPoRepMarketAbi,
     SpRegistryAbi: DevnetSPRegistryAbi,
+    SLIOracleAbi: DevnetSLIOracleAbi,
+    SLIScorerAbi: DevnetSLIScorerAbi,
   },
   calibnet: {
     PoRepMarketAbi: CalibnetPoRepMarketAbi,
     SpRegistryAbi: CalibnetSPRegistryAbi,
+    SLIOracleAbi: CalibnetSLIOracleAbi,
+    SLIScorerAbi: CalibnetSLIScorerAbi,
   },
   mainnet: {
     PoRepMarketAbi: MainnetPoRepMarketAbi,
     SpRegistryAbi: MainnetSPRegistryAbi,
+    SLIOracleAbi: MainnetSLIOracleAbi,
+    SLIScorerAbi: MainnetSLIScorerAbi,
   },
 }
 
@@ -86,4 +107,3 @@ export const CHAIN_ID_TO_NETWORK: Record<number, NetworkKey> = {
   314159: 'calibnet',
   314: 'mainnet',
 }
-

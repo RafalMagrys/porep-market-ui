@@ -292,11 +292,6 @@
             "internalType": "uint256"
           },
           {
-            "name": "proposedAtBlock",
-            "type": "uint256",
-            "internalType": "uint256"
-          },
-          {
             "name": "manifestLocation",
             "type": "string",
             "internalType": "string"
@@ -1335,6 +1330,22 @@
   {
     "type": "error",
     "name": "InvalidDealPricePerSectorPerMonth",
+    "inputs": [
+      {
+        "name": "totalPerMonth",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "epochsInMonth",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "InvalidDealSize",
     "inputs": []
   },
   {
