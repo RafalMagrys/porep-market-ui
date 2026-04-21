@@ -1,20 +1,19 @@
 import type { Metadata } from 'next'
-import { Inter, Geist } from 'next/font/google'
+import { Geist } from 'next/font/google'
 
 import '@rainbow-me/rainbowkit/styles.css'
 
 import { Nav } from '@/components/nav'
+import { Sidebar } from '@/components/sidebar'
 import { Providers } from '@/components/providers'
+import { cn } from '@/lib/utils'
 
 import './globals.css'
-import { cn } from "@/lib/utils";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
-
-const inter = Inter({ subsets: ['latin'] })
+const geist = Geist({ subsets: ['latin'], variable: '--font-sans' })
 
 export const metadata: Metadata = {
-  title: 'Porep Market',
+  title: 'PoRep Market',
   description: 'Filecoin Storage Provider Reputation Market',
 }
 
@@ -24,11 +23,16 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={cn("font-sans", geist.variable)}>
-      <body className={inter.className}>
+    <html lang="en" className={cn('font-sans', geist.variable)} suppressHydrationWarning>
+      <body>
         <Providers>
-          <Nav />
-          {children}
+          <div className="flex h-screen flex-col">
+            <Nav />
+            <div className="flex flex-1 overflow-hidden">
+              <Sidebar />
+              <main className="flex-1 overflow-y-auto">{children}</main>
+            </div>
+          </div>
         </Providers>
       </body>
     </html>

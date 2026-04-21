@@ -6,18 +6,19 @@ import { usePublicClient } from 'wagmi'
 import { useContracts } from '@/contexts/network-context'
 import type { DealProposal } from '@/types'
 
-export function useCompletedDeals() {
+export function useDeal(dealId: bigint | undefined) {
   const client = usePublicClient()
   const [{ POREP_MARKET }, { PoRepMarketAbi }] = useContracts()
 
   return useQuery({
-    queryKey: ['completedDeals', POREP_MARKET],
+    queryKey: ['deal', dealId?.toString(), POREP_MARKET],
     queryFn: () =>
       client!.readContract({
         address: POREP_MARKET,
         abi: PoRepMarketAbi,
-        functionName: 'getCompletedDeals',
-      }) as Promise<DealProposal[]>,
-    enabled: !!client,
+        functionName: 'getDealProposal',
+        args: [dealId!],
+      }) as Promise<DealProposal>,
+    enabled: !!client && dealId !== undefined,
   })
 }

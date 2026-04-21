@@ -7,6 +7,9 @@ dev:
 build:
     pnpm build
 
+install:
+    pnpm install
+
 fmt:
     pnpm prettier .
 
