@@ -42,9 +42,22 @@ export const localTestnet = defineChain({
   testnet: true,
 })
 
-export const wagmiConfig = getDefaultConfig({
-  appName: 'PoRep Market',
-  projectId: '191fc4fc-7f2c-4c4f-b434-c0e98f9f509b',
-  chains: [localTestnet, filecoinCalibration, filecoin],
-  ssr: true,
-})
+export function createWagmiConfig(devnetRpcUrl?: string) {
+  const devnet = devnetRpcUrl
+    ? defineChain({
+        id: 31415926,
+        name: 'Local Testnet',
+        nativeCurrency: { name: 'Filecoin', symbol: 'tFIL', decimals: 18 },
+        rpcUrls: { default: { http: [devnetRpcUrl] } },
+        blockExplorers: { default: { name: 'Local', url: 'http://localhost:8080' } },
+        testnet: true,
+      })
+    : localTestnet
+
+  return getDefaultConfig({
+    appName: 'PoRep Market',
+    projectId: '191fc4fc-7f2c-4c4f-b434-c0e98f9f509b',
+    chains: [devnet, filecoinCalibration, filecoin],
+    ssr: true,
+  })
+}

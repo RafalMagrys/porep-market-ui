@@ -6,7 +6,8 @@ import { RainbowKitProvider, darkTheme, lightTheme } from '@rainbow-me/rainbowki
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { WagmiProvider } from 'wagmi'
 
-import { wagmiConfig } from '@/lib/wagmi'
+import { createWagmiConfig } from '@/lib/wagmi'
+import { loadDevnetSettings } from '@/lib/devnet-settings'
 import { NetworkProvider } from '@/contexts/network-context'
 
 function RainbowKitWithTheme({ children }: { children: React.ReactNode }) {
@@ -23,6 +24,7 @@ function RainbowKitWithTheme({ children }: { children: React.ReactNode }) {
 
 export function Providers({ children }: { children: React.ReactNode }) {
   const [queryClient] = useState(() => new QueryClient())
+  const [wagmiConfig] = useState(() => createWagmiConfig(loadDevnetSettings().rpcUrl || undefined))
 
   return (
     <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>

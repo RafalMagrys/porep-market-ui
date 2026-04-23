@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
 import { useTransferDatacap } from '@/hooks/useTransferDatacap'
 import type { DealProposal } from '@/types'
+import { useNetwork } from '@/contexts/network-context'
 
 interface TransferDatacapCardProps {
   deal: DealProposal
@@ -36,6 +37,7 @@ function ProgressBar({ value, max }: { value: number; max: number }) {
 export function TransferDatacapCard({ deal }: TransferDatacapCardProps) {
   const [mocked, setMocked] = useState(false)
   const [mockPieceCount, setMockPieceCount] = useState(1)
+  const network = useNetwork()
 
   const { status, start, retry } = useTransferDatacap({
     dealId: deal.dealId,
@@ -65,7 +67,7 @@ export function TransferDatacapCard({ deal }: TransferDatacapCardProps) {
               manifest. Pieces are processed in batches of 10.
             </p>
 
-            <label className="flex cursor-pointer items-center gap-2">
+            {network.activeNetwork === 'devnet' && <label className="flex cursor-pointer items-center gap-2">
               <input
                 type="checkbox"
                 className="border-input accent-primary size-4 rounded"
@@ -78,7 +80,7 @@ export function TransferDatacapCard({ deal }: TransferDatacapCardProps) {
                   (devnet testing — uses hardcoded sample CommP)
                 </span>
               </Label>
-            </label>
+            </label>}
 
             {mocked && (
               <div className="flex items-center gap-2">

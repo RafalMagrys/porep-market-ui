@@ -7,6 +7,8 @@ import { CheckCircle2, FileText, PlusCircle, Server, Settings, ShieldAlert } fro
 import { cn } from '@/lib/utils'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Separator } from '@/components/ui/separator'
+import { DevnetSettingsDialog } from '@/components/devnet-settings-dialog'
+import { useNetwork } from '@/contexts/network-context'
 
 const navGroups = [
   {
@@ -32,6 +34,7 @@ const navGroups = [
 
 export function Sidebar() {
   const pathname = usePathname()
+  const { activeNetwork } = useNetwork()
 
   return (
     <aside className="hidden w-56 shrink-0 border-r md:flex md:flex-col">
@@ -66,6 +69,11 @@ export function Sidebar() {
           ))}
         </div>
         <Separator />
+        {activeNetwork === 'devnet' && (
+          <div className="px-3 py-3">
+            <DevnetSettingsDialog />
+          </div>
+        )}
       </ScrollArea>
     </aside>
   )
