@@ -11,7 +11,9 @@ export function DealCard({ deal }: { deal: DealProposal }) {
       <Card className="hover:border-primary/50 cursor-pointer transition-colors">
         <CardHeader className="pb-2">
           <div className="flex items-center justify-between">
-            <span className="font-mono text-sm text-muted-foreground">#{deal.dealId.toString()}</span>
+            <span className="text-muted-foreground font-mono text-sm">
+              #{deal.dealId.toString()}
+            </span>
             <DealStateBadge state={deal.state} />
           </div>
         </CardHeader>
@@ -35,7 +37,7 @@ export function DealCard({ deal }: { deal: DealProposal }) {
         </CardContent>
         {deal.manifestLocation && (
           <CardFooter>
-            <p className="truncate font-mono text-xs text-muted-foreground">
+            <p className="text-muted-foreground truncate font-mono text-xs">
               {deal.manifestLocation}
             </p>
           </CardFooter>

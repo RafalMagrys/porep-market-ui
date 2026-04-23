@@ -25,13 +25,13 @@ export function StorageProvidersPage() {
     <div className="flex flex-col gap-6 p-6">
       <div>
         <h1 className="text-2xl font-bold">Storage Providers</h1>
-        <p className="text-sm text-muted-foreground">
+        <p className="text-muted-foreground text-sm">
           Registered providers and their capabilities on the PoRep Market
         </p>
       </div>
 
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+        <Search className="text-muted-foreground absolute top-1/2 left-3 size-4 -translate-y-1/2" />
         <Input
           placeholder="Search by SP ID or organization address…"
           className="pl-9"
@@ -41,7 +41,7 @@ export function StorageProvidersPage() {
       </div>
 
       {error && (
-        <div className="rounded-md border border-destructive/50 bg-destructive/10 p-4 text-sm text-destructive">
+        <div className="border-destructive/50 bg-destructive/10 text-destructive rounded-md border p-4 text-sm">
           Failed to load providers: {(error as Error).message}
         </div>
       )}
@@ -55,7 +55,7 @@ export function StorageProvidersPage() {
       )}
 
       {!isLoading && filtered.length === 0 && (
-        <div className="py-16 text-center text-muted-foreground">
+        <div className="text-muted-foreground py-16 text-center">
           {search ? 'No providers match your search.' : 'No storage providers registered yet.'}
         </div>
       )}

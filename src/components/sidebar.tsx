@@ -26,9 +26,7 @@ const navGroups = [
   },
   {
     label: 'Admin',
-    items: [
-      { label: 'Admin Panel', href: '/admin', icon: ShieldAlert },
-    ],
+    items: [{ label: 'Admin Panel', href: '/admin', icon: ShieldAlert }],
   },
 ]
 
@@ -38,10 +36,10 @@ export function Sidebar() {
   return (
     <aside className="hidden w-56 shrink-0 border-r md:flex md:flex-col">
       <ScrollArea className="flex-1">
-        <div className="px-3 py-4 space-y-4">
+        <div className="space-y-4 px-3 py-4">
           {navGroups.map(({ label, items }) => (
             <div key={label}>
-              <p className="mb-1 px-2 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+              <p className="text-muted-foreground mb-1 px-2 text-xs font-semibold tracking-widest uppercase">
                 {label}
               </p>
               <nav className="flex flex-col gap-1">
@@ -55,7 +53,7 @@ export function Sidebar() {
                         'flex items-center gap-3 rounded-md px-2 py-2 text-sm transition-colors',
                         isActive
                           ? 'bg-primary text-primary-foreground'
-                          : 'text-muted-foreground hover:bg-muted hover:text-foreground',
+                          : 'text-muted-foreground hover:bg-muted hover:text-foreground'
                       )}
                     >
                       <Icon className="size-4 shrink-0" />

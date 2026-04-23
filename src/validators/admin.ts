@@ -1,13 +1,22 @@
 import { z } from 'zod/v3'
 
 const address = z.string().regex(/^0x[0-9a-fA-F]{40}$/, 'Invalid EVM address')
-const dealId = z.string().min(1).refine((v) => !isNaN(Number(v)) && Number(v) >= 0, 'Must be a valid deal ID')
-const spId = z.string().min(1).refine((v) => !isNaN(Number(v)) && Number(v) > 0, 'Must be a valid SP ID')
+const dealId = z
+  .string()
+  .min(1)
+  .refine((v) => !isNaN(Number(v)) && Number(v) >= 0, 'Must be a valid deal ID')
+const spId = z
+  .string()
+  .min(1)
+  .refine((v) => !isNaN(Number(v)) && Number(v) > 0, 'Must be a valid SP ID')
 
 export const terminateDealSchema = z.object({
   dealId,
   terminator: address,
-  endEpoch: z.string().min(1).refine((v) => !isNaN(Number(v)) && Number(v) >= 0, 'Must be >= 0'),
+  endEpoch: z
+    .string()
+    .min(1)
+    .refine((v) => !isNaN(Number(v)) && Number(v) >= 0, 'Must be >= 0'),
 })
 
 export const rejectDealSchema = z.object({ dealId })
@@ -16,7 +25,10 @@ export const updateValidatorSchema = z.object({ dealId })
 
 export const updateRailIdSchema = z.object({
   dealId,
-  railId: z.string().min(1).refine((v) => !isNaN(Number(v)) && Number(v) >= 0, 'Must be >= 0'),
+  railId: z
+    .string()
+    .min(1)
+    .refine((v) => !isNaN(Number(v)) && Number(v) >= 0, 'Must be >= 0'),
 })
 
 export const updateManifestSchema = z.object({

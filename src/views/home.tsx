@@ -30,7 +30,7 @@ export function HomePage() {
       <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-2xl font-bold">Open Deals</h1>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-muted-foreground text-sm">
             Browse all active deal proposals on the PoRep Market
           </p>
         </div>
@@ -41,7 +41,7 @@ export function HomePage() {
       </div>
 
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+        <Search className="text-muted-foreground absolute top-1/2 left-3 size-4 -translate-y-1/2" />
         <Input
           placeholder="Search by deal ID, client, provider, or manifest…"
           className="pl-9"
@@ -51,7 +51,7 @@ export function HomePage() {
       </div>
 
       {error && (
-        <div className="rounded-md border border-destructive/50 bg-destructive/10 p-4 text-sm text-destructive">
+        <div className="border-destructive/50 bg-destructive/10 text-destructive rounded-md border p-4 text-sm">
           Failed to load deals: {error.message}
         </div>
       )}

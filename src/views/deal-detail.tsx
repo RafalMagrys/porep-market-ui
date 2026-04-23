@@ -7,8 +7,10 @@ import { Button, buttonVariants } from '@/components/ui/button'
 import { DealStateBadge } from '@/components/deal-state-badge'
 import { DealDetailsCard } from '@/components/deal-details-card'
 import { DealAttestationCard } from '@/components/deal-attestation-card'
+import { TransferDatacapCard } from '@/components/transfer-datacap-card'
 import { useDeal } from '@/hooks/useDeal'
 import { useAcceptDeal } from '@/hooks/useAcceptDeal'
+import { useDealTermination } from '@/hooks/useDealTermination'
 import { DealState } from '@/types'
 import { Skeleton } from '@/components/ui/skeleton'
 
@@ -19,6 +21,7 @@ interface DealDetailPageProps {
 export function DealDetailPage({ dealId }: DealDetailPageProps) {
   const { data: deal, isLoading, error } = useDeal(dealId)
   const { acceptDeal, isPending, isConfirming, isSuccess, onSuccess } = useAcceptDeal(dealId)
+  const { data: termination } = useDealTermination(dealId)
 
   if (isLoading) {
     return (
@@ -32,7 +35,7 @@ export function DealDetailPage({ dealId }: DealDetailPageProps) {
   if (error || !deal) {
     return (
       <div className="p-6">
-        <div className="rounded-md border border-destructive/50 bg-destructive/10 p-4 text-sm text-destructive">
+        <div className="border-destructive/50 bg-destructive/10 text-destructive rounded-md border p-4 text-sm">
           {error ? `Failed to load deal: ${error.message}` : 'Deal not found.'}
         </div>
       </div>
@@ -40,6 +43,7 @@ export function DealDetailPage({ dealId }: DealDetailPageProps) {
   }
 
   const canAccept = deal.state === DealState.Proposed
+  const canAllocate = deal.state === DealState.Accepted
 
   async function handleAccept() {
     await acceptDeal()
@@ -59,8 +63,9 @@ export function DealDetailPage({ dealId }: DealDetailPageProps) {
       </div>
 
       <div className="grid gap-4 lg:grid-cols-2">
-        <DealDetailsCard deal={deal} />
+        <DealDetailsCard deal={deal} termination={termination} />
         <DealAttestationCard providerId={deal.provider} requirements={deal.requirements} />
+        {canAllocate && <TransferDatacapCard deal={deal} />}
       </div>
 
       {canAccept && (

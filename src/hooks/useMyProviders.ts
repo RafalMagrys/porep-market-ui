@@ -28,14 +28,15 @@ export function useMyProviders() {
     queryFn: async () => {
       const ids = idsQuery.data!
       const infos = await Promise.all(
-        ids.map((id) =>
-          client!.readContract({
-            address: SP_REGISTRY,
-            abi: SpRegistryAbi,
-            functionName: 'getProviderInfo',
-            args: [id],
-          }) as Promise<ProviderInfo>,
-        ),
+        ids.map(
+          (id) =>
+            client!.readContract({
+              address: SP_REGISTRY,
+              abi: SpRegistryAbi,
+              functionName: 'getProviderInfo',
+              args: [id],
+            }) as Promise<ProviderInfo>
+        )
       )
       return ids.map((id, i) => ({ id, info: infos[i] }))
     },
@@ -46,6 +47,9 @@ export function useMyProviders() {
     providers: infosQuery.data ?? [],
     isLoading: idsQuery.isLoading || infosQuery.isLoading,
     error: idsQuery.error || infosQuery.error,
-    refetch: () => { idsQuery.refetch(); infosQuery.refetch() },
+    refetch: () => {
+      idsQuery.refetch()
+      infosQuery.refetch()
+    },
   }
 }

@@ -20,7 +20,9 @@ export function SPCard({ id, info }: SPCardProps) {
             {info.blocked ? 'Blocked' : info.paused ? 'Paused' : 'Active'}
           </Badge>
         </div>
-        <p className="font-mono text-xs text-muted-foreground">{formatAddress(info.organization)}</p>
+        <p className="text-muted-foreground font-mono text-xs">
+          {formatAddress(info.organization)}
+        </p>
       </CardHeader>
       <CardContent className="grid grid-cols-2 gap-x-4 gap-y-1 text-sm">
         <div className="text-muted-foreground">Available</div>

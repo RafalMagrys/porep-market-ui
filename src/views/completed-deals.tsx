@@ -26,13 +26,11 @@ export function CompletedDealsPage() {
     <div className="flex flex-col gap-6 p-6">
       <div>
         <h1 className="text-2xl font-bold">Completed Deals</h1>
-        <p className="text-sm text-muted-foreground">
-          All successfully completed storage deals
-        </p>
+        <p className="text-muted-foreground text-sm">All successfully completed storage deals</p>
       </div>
 
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+        <Search className="text-muted-foreground absolute top-1/2 left-3 size-4 -translate-y-1/2" />
         <Input
           placeholder="Search by deal ID, client, provider, or manifest…"
           className="pl-9"
@@ -42,7 +40,7 @@ export function CompletedDealsPage() {
       </div>
 
       {error && (
-        <div className="rounded-md border border-destructive/50 bg-destructive/10 p-4 text-sm text-destructive">
+        <div className="border-destructive/50 bg-destructive/10 text-destructive rounded-md border p-4 text-sm">
           Failed to load deals: {error.message}
         </div>
       )}
@@ -56,7 +54,7 @@ export function CompletedDealsPage() {
       )}
 
       {!isLoading && filtered?.length === 0 && (
-        <div className="py-16 text-center text-muted-foreground">
+        <div className="text-muted-foreground py-16 text-center">
           {search ? 'No completed deals match your search.' : 'No completed deals yet.'}
         </div>
       )}

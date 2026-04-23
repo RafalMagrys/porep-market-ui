@@ -9,7 +9,7 @@ import {
   ABIS,
   type NetworkKey,
   type ContractAddresses,
-  type NetworkAbis
+  type NetworkAbis,
 } from '@/lib/network-config'
 
 interface NetworkContextValue {
@@ -44,4 +44,3 @@ export function useContracts() {
   const network = useNetwork()
   return [network.contracts, network.abis] as const
 }
-

@@ -14,7 +14,7 @@ import { proposeDealSchema, type ProposeDealFormValues } from '@/validators/prop
 
 function FieldError({ message }: { message?: string }) {
   if (!message) return null
-  return <p className="mt-1 text-xs text-destructive">{message}</p>
+  return <p className="text-destructive mt-1 text-xs">{message}</p>
 }
 
 export function ProposeDealPage() {
@@ -49,7 +49,7 @@ export function ProposeDealPage() {
         pricePerSectorPerMonth: BigInt(values.pricePerSectorPerMonth),
         durationDays: values.durationDays,
       },
-      values.manifestLocation,
+      values.manifestLocation
     )
     onSuccess()
     router.push('/')
@@ -59,12 +59,12 @@ export function ProposeDealPage() {
     <div className="flex flex-col gap-6 p-6">
       <div>
         <h1 className="text-2xl font-bold">Propose New Deal</h1>
-        <p className="text-sm text-muted-foreground">
+        <p className="text-muted-foreground text-sm">
           Submit a new storage deal proposal to the PoRep Market
         </p>
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6 max-w-2xl">
+      <form onSubmit={handleSubmit(onSubmit)} className="flex max-w-2xl flex-col gap-6">
         <Card>
           <CardHeader>
             <CardTitle className="text-base">Manifest</CardTitle>
@@ -127,7 +127,9 @@ export function ProposeDealPage() {
         <Card>
           <CardHeader>
             <CardTitle className="text-base">SLI Requirements</CardTitle>
-            <CardDescription>Minimum service level indicators the provider must meet</CardDescription>
+            <CardDescription>
+              Minimum service level indicators the provider must meet
+            </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
@@ -187,7 +189,11 @@ export function ProposeDealPage() {
         )}
 
         <Button type="submit" className="w-full" disabled={isPending || isConfirming}>
-          {isPending ? 'Confirm in wallet…' : isConfirming ? 'Confirming transaction…' : 'Propose Deal'}
+          {isPending
+            ? 'Confirm in wallet…'
+            : isConfirming
+              ? 'Confirming transaction…'
+              : 'Propose Deal'}
         </Button>
       </form>
     </div>

@@ -11,7 +11,11 @@ export function useToleranceBps() {
   return useQuery({
     queryKey: ['toleranceBps', SP_REGISTRY],
     queryFn: () =>
-      client!.readContract({ address: SP_REGISTRY, abi: SpRegistryAbi, functionName: 'getToleranceBps' }) as Promise<bigint>,
+      client!.readContract({
+        address: SP_REGISTRY,
+        abi: SpRegistryAbi,
+        functionName: 'getToleranceBps',
+      }) as Promise<bigint>,
     enabled: !!client,
   })
 }
@@ -21,7 +25,12 @@ export function useGrantRevokeRole() {
   const { writeContractAsync, data: hash, isPending } = useWriteContract()
   const { isLoading: isConfirming, isSuccess } = useWaitForTransactionReceipt({ hash })
 
-  const write = (action: 'grant' | 'revoke', target: 'registry' | 'market', role: `0x${string}`, account: `0x${string}`) =>
+  const write = (
+    action: 'grant' | 'revoke',
+    target: 'registry' | 'market',
+    role: `0x${string}`,
+    account: `0x${string}`
+  ) =>
     writeContractAsync({
       address: target === 'registry' ? SP_REGISTRY : POREP_MARKET,
       abi: target === 'registry' ? SpRegistryAbi : PoRepMarketAbi,
@@ -29,5 +38,11 @@ export function useGrantRevokeRole() {
       args: [role, account],
     })
 
-  return { grantRole: write.bind(null, 'grant'), revokeRole: write.bind(null, 'revoke'), isPending, isConfirming, isSuccess }
+  return {
+    grantRole: write.bind(null, 'grant'),
+    revokeRole: write.bind(null, 'revoke'),
+    isPending,
+    isConfirming,
+    isSuccess,
+  }
 }

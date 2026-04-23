@@ -8,7 +8,7 @@ import type { ProviderInfo } from '@/types'
 
 export function useSPs() {
   const client = usePublicClient()
-  const [{ SP_REGISTRY }, {SpRegistryAbi}] = useContracts()
+  const [{ SP_REGISTRY }, { SpRegistryAbi }] = useContracts()
 
   const providerIdsQuery = useQuery({
     queryKey: ['spIds', SP_REGISTRY],
@@ -26,14 +26,15 @@ export function useSPs() {
     queryFn: async () => {
       const ids = providerIdsQuery.data!
       const infos = await Promise.all(
-        ids.map((id) =>
-          client!.readContract({
-            address: SP_REGISTRY,
-            abi: SpRegistryAbi,
-            functionName: 'getProviderInfo',
-            args: [id],
-          }) as Promise<ProviderInfo>,
-        ),
+        ids.map(
+          (id) =>
+            client!.readContract({
+              address: SP_REGISTRY,
+              abi: SpRegistryAbi,
+              functionName: 'getProviderInfo',
+              args: [id],
+            }) as Promise<ProviderInfo>
+        )
       )
       return ids.map((id, i) => ({ id, info: infos[i] }))
     },

@@ -7,7 +7,7 @@ import { useContracts } from '@/contexts/network-context'
 
 export function useAcceptDeal(dealId: bigint) {
   const queryClient = useQueryClient()
-  const [ contracts, abis ] = useContracts()
+  const [contracts, abis] = useContracts()
   const { writeContractAsync, data: hash, isPending } = useWriteContract()
   const { isLoading: isConfirming, isSuccess } = useWaitForTransactionReceipt({ hash })
 

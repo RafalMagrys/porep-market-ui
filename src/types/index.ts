@@ -26,6 +26,11 @@ export interface DealProposal {
   manifestLocation: string
 }
 
+export interface DealTermination {
+  terminator: Address
+  endEpoch: bigint
+}
+
 export enum DealState {
   Proposed = 0,
   Accepted = 1,

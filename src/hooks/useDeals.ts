@@ -12,7 +12,7 @@ export function useDeals() {
 
   console.log('address', POREP_MARKET)
   console.log('abi', PoRepMarketAbi)
-  
+
   return useQuery({
     queryKey: ['deals', POREP_MARKET],
     queryFn: () =>

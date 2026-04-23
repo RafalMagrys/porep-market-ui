@@ -8,11 +8,15 @@ import type { DealRequirements, DealTerms } from '@/types'
 
 export function useProposeDeal() {
   const queryClient = useQueryClient()
-  const [{ POREP_MARKET }, {PoRepMarketAbi}] = useContracts()
+  const [{ POREP_MARKET }, { PoRepMarketAbi }] = useContracts()
   const { writeContractAsync, data: hash, isPending } = useWriteContract()
   const { isLoading: isConfirming, isSuccess } = useWaitForTransactionReceipt({ hash })
 
-  async function proposeDeal(requirements: DealRequirements, terms: DealTerms, manifestLocation: string) {
+  async function proposeDeal(
+    requirements: DealRequirements,
+    terms: DealTerms,
+    manifestLocation: string
+  ) {
     return writeContractAsync({
       address: POREP_MARKET,
       abi: PoRepMarketAbi,

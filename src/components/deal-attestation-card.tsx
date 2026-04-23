@@ -15,14 +15,22 @@ function ScoreBar({ score }: { score: bigint }) {
         <span className="text-muted-foreground">Score</span>
         <span className="font-semibold tabular-nums">{pct.toFixed(2)}%</span>
       </div>
-      <div className="h-2 w-full overflow-hidden rounded-full bg-muted">
-        <div className="h-full rounded-full bg-primary transition-all" style={{ width: `${pct}%` }} />
+      <div className="bg-muted h-2 w-full overflow-hidden rounded-full">
+        <div
+          className="bg-primary h-full rounded-full transition-all"
+          style={{ width: `${pct}%` }}
+        />
       </div>
     </div>
   )
 }
 
-function SLIRow({ label, deal, attested, higherIsBetter = true }: {
+function SLIRow({
+  label,
+  deal,
+  attested,
+  higherIsBetter = true,
+}: {
   label: string
   deal: number
   attested: number
@@ -33,7 +41,9 @@ function SLIRow({ label, deal, attested, higherIsBetter = true }: {
     <div className="grid grid-cols-3 items-center gap-2 text-sm">
       <span className="text-muted-foreground">{label}</span>
       <span className="text-center tabular-nums">{deal}</span>
-      <span className={`text-right tabular-nums font-medium ${meets ? 'text-green-600 dark:text-green-400' : 'text-destructive'}`}>
+      <span
+        className={`text-right font-medium tabular-nums ${meets ? 'text-green-600 dark:text-green-400' : 'text-destructive'}`}
+      >
         {attested}
       </span>
     </div>
@@ -61,7 +71,7 @@ export function DealAttestationCard({ providerId, requirements }: DealAttestatio
           ) : score !== undefined ? (
             <ScoreBar score={score} />
           ) : (
-            <p className="text-sm text-muted-foreground">Score unavailable</p>
+            <p className="text-muted-foreground text-sm">Score unavailable</p>
           )}
         </CardContent>
       </Card>
@@ -79,12 +89,12 @@ export function DealAttestationCard({ providerId, requirements }: DealAttestatio
             </div>
           ) : attestation ? (
             <div className="space-y-4 text-sm">
-              <div className="flex items-center justify-between text-xs text-muted-foreground">
+              <div className="text-muted-foreground flex items-center justify-between text-xs">
                 <span>Last updated block</span>
                 <span className="font-mono">{attestation.lastUpdate.toString()}</span>
               </div>
               <Separator />
-              <div className="grid grid-cols-3 gap-2 text-xs font-medium text-muted-foreground">
+              <div className="text-muted-foreground grid grid-cols-3 gap-2 text-xs font-medium">
                 <span />
                 <span className="text-center">Deal</span>
                 <span className="text-right">SP</span>
@@ -112,7 +122,7 @@ export function DealAttestationCard({ providerId, requirements }: DealAttestatio
               />
             </div>
           ) : (
-            <p className="text-sm text-muted-foreground">No attestation available for this SP</p>
+            <p className="text-muted-foreground text-sm">No attestation available for this SP</p>
           )}
         </CardContent>
       </Card>

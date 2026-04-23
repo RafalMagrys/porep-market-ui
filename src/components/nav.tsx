@@ -13,7 +13,7 @@ export function Nav() {
   return (
     <nav className="flex h-14 items-center justify-between border-b px-4 lg:px-6">
       <Link href="/" className="flex items-center gap-2 font-semibold">
-        <Database className="size-5 text-primary" />
+        <Database className="text-primary size-5" />
         <span>PoRep Market</span>
       </Link>
       <div className="flex items-center gap-3">
