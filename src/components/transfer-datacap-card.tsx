@@ -67,20 +67,22 @@ export function TransferDatacapCard({ deal }: TransferDatacapCardProps) {
               manifest. Pieces are processed in batches of 10.
             </p>
 
-            {network.activeNetwork === 'devnet' && <label className="flex cursor-pointer items-center gap-2">
-              <input
-                type="checkbox"
-                className="border-input accent-primary size-4 rounded"
-                checked={mocked}
-                onChange={(e) => setMocked(e.target.checked)}
-              />
-              <Label className="cursor-pointer font-normal">
-                Mock allocation
-                <span className="text-muted-foreground ml-1 text-xs">
-                  (devnet testing — uses hardcoded sample CommP)
-                </span>
-              </Label>
-            </label>}
+            {network.activeNetwork === 'devnet' && (
+              <label className="flex cursor-pointer items-center gap-2">
+                <input
+                  type="checkbox"
+                  className="border-input accent-primary size-4 rounded"
+                  checked={mocked}
+                  onChange={(e) => setMocked(e.target.checked)}
+                />
+                <Label className="cursor-pointer font-normal">
+                  Mock allocation
+                  <span className="text-muted-foreground ml-1 text-xs">
+                    (devnet testing — uses hardcoded sample CommP)
+                  </span>
+                </Label>
+              </label>
+            )}
 
             {mocked && (
               <div className="flex items-center gap-2">

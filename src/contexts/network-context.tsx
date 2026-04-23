@@ -41,9 +41,7 @@ export function NetworkProvider({ children }: { children: ReactNode }) {
     activeNetwork === 'devnet'
       ? {
           ...baseContracts,
-          ...Object.fromEntries(
-            Object.entries(devnetSettings.contracts).filter(([, v]) => v)
-          ),
+          ...Object.fromEntries(Object.entries(devnetSettings.contracts).filter(([, v]) => v)),
         }
       : baseContracts
 
@@ -62,7 +60,15 @@ export function NetworkProvider({ children }: { children: ReactNode }) {
 
   return (
     <NetworkContext.Provider
-      value={{ activeNetwork, contracts, networks: NETWORKS, abis, devnetSettings, saveDevnetOverrides, resetDevnetOverrides }}
+      value={{
+        activeNetwork,
+        contracts,
+        networks: NETWORKS,
+        abis,
+        devnetSettings,
+        saveDevnetOverrides,
+        resetDevnetOverrides,
+      }}
     >
       {children}
     </NetworkContext.Provider>

@@ -34,14 +34,18 @@ export function DevnetSettingsDialog() {
   const { devnetSettings, saveDevnetOverrides, resetDevnetOverrides } = useNetwork()
   const [open, setOpen] = useState(false)
   const [rpcUrl, setRpcUrl] = useState(devnetSettings.rpcUrl)
-  const [contracts, setContracts] = useState<Record<string, string>>(
-    () => ({ ...devnetSettings.contracts })
+  const [contracts, setContracts] = useState<Record<string, string>>(() =>
+    Object.fromEntries(
+      Object.entries(devnetSettings.contracts).filter((e): e is [string, string] => e[1] !== undefined)
+    )
   )
 
   function handleOpen(val: boolean) {
     if (val) {
       setRpcUrl(devnetSettings.rpcUrl)
-      setContracts({ ...devnetSettings.contracts })
+      setContracts(Object.fromEntries(
+        Object.entries(devnetSettings.contracts).filter((e): e is [string, string] => e[1] !== undefined)
+      ))
     }
     setOpen(val)
   }
@@ -60,8 +64,8 @@ export function DevnetSettingsDialog() {
 
   return (
     <Dialog open={open} onOpenChange={handleOpen}>
-      <DialogTrigger asChild>
-        <button className="text-muted-foreground hover:text-foreground flex w-full items-center gap-3 rounded-md px-2 py-2 text-sm transition-colors hover:bg-muted">
+      <DialogTrigger>
+        <button className="text-muted-foreground hover:text-foreground hover:bg-muted flex w-full items-center gap-3 rounded-md px-2 py-2 text-sm transition-colors">
           <Settings className="size-4 shrink-0" />
           Devnet Settings
         </button>
