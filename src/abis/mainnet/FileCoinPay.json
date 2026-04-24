@@ -1,0 +1,54 @@
+[
+  {
+    "type": "function",
+    "name": "depositWithPermitAndApproveOperator",
+    "inputs": [
+      { "name": "token", "type": "address", "internalType": "address" },
+      { "name": "to", "type": "address", "internalType": "address" },
+      { "name": "amount", "type": "uint256", "internalType": "uint256" },
+      { "name": "deadline", "type": "uint256", "internalType": "uint256" },
+      { "name": "v", "type": "uint8", "internalType": "uint8" },
+      { "name": "r", "type": "bytes32", "internalType": "bytes32" },
+      { "name": "s", "type": "bytes32", "internalType": "bytes32" },
+      { "name": "operator", "type": "address", "internalType": "address" },
+      { "name": "rateAllowance", "type": "uint256", "internalType": "uint256" },
+      { "name": "lockupAllowance", "type": "uint256", "internalType": "uint256" },
+      { "name": "maxLockupPeriod", "type": "uint256", "internalType": "uint256" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "operatorApprovals",
+    "inputs": [
+      { "name": "token", "type": "address", "internalType": "address" },
+      { "name": "client", "type": "address", "internalType": "address" },
+      { "name": "operator", "type": "address", "internalType": "address" }
+    ],
+    "outputs": [
+      { "name": "isApproved", "type": "bool", "internalType": "bool" },
+      { "name": "rateAllowance", "type": "uint256", "internalType": "uint256" },
+      { "name": "lockupAllowance", "type": "uint256", "internalType": "uint256" },
+      { "name": "rateUsage", "type": "uint256", "internalType": "uint256" },
+      { "name": "lockupUsage", "type": "uint256", "internalType": "uint256" },
+      { "name": "maxLockupPeriod", "type": "uint256", "internalType": "uint256" }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "accounts",
+    "inputs": [
+      { "name": "token", "type": "address", "internalType": "address" },
+      { "name": "owner", "type": "address", "internalType": "address" }
+    ],
+    "outputs": [
+      { "name": "funds", "type": "uint256", "internalType": "uint256" },
+      { "name": "lockupCurrent", "type": "uint256", "internalType": "uint256" },
+      { "name": "lockupRate", "type": "uint256", "internalType": "uint256" },
+      { "name": "lockupLastSettledAt", "type": "uint256", "internalType": "uint256" }
+    ],
+    "stateMutability": "view"
+  }
+]

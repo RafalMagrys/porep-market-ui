@@ -5,8 +5,24 @@ import { Search } from 'lucide-react'
 
 import { Input } from '@/components/ui/input'
 import { Skeleton } from '@/components/ui/skeleton'
+import { Badge } from '@/components/ui/badge'
 import { SPCard } from '@/components/sp-card'
 import { useSPs } from '@/hooks/useSPs'
+import { formatAddress } from '@/lib/format'
+import type { ProviderInfo } from '@/types'
+import type { Address } from 'viem'
+
+type SPEntry = { id: bigint; info: ProviderInfo }
+
+function SPGrid({ sps }: { sps: SPEntry[] }) {
+  return (
+    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {sps.map(({ id, info }) => (
+        <SPCard key={id.toString()} id={id} info={info} />
+      ))}
+    </div>
+  )
+}
 
 export function StorageProvidersPage() {
   const { providers, isLoading, error } = useSPs()
@@ -20,6 +36,22 @@ export function StorageProvidersPage() {
       info.payee.toLowerCase().includes(q)
     )
   })
+
+  // Group by organization address
+  const orgMap = new Map<string, SPEntry[]>()
+  for (const sp of filtered) {
+    const org = sp.info.organization.toLowerCase()
+    if (!orgMap.has(org)) orgMap.set(org, [])
+    orgMap.get(org)!.push(sp)
+  }
+
+  const orgGroups = [...orgMap.entries()]
+    .filter(([, sps]) => sps.length > 1)
+    .map(([org, sps]) => ({ org: org as Address, sps }))
+
+  const soloSPs = [...orgMap.entries()]
+    .filter(([, sps]) => sps.length === 1)
+    .flatMap(([, sps]) => sps)
 
   return (
     <div className="flex flex-col gap-6 p-6">
@@ -60,11 +92,30 @@ export function StorageProvidersPage() {
         </div>
       )}
 
-      {filtered.length > 0 && (
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {filtered.map(({ id, info }) => (
-            <SPCard key={id.toString()} id={id} info={info} />
+      {!isLoading && filtered.length > 0 && (
+        <div className="flex flex-col gap-8">
+          {orgGroups.map(({ org, sps }) => (
+            <div key={org} className="flex flex-col gap-3">
+              <div className="flex items-center gap-3">
+                <span className="text-muted-foreground font-mono text-xs">{formatAddress(org)}</span>
+                <Badge variant="secondary">{sps.length} SPs</Badge>
+                <div className="bg-border h-px flex-1" />
+              </div>
+              <SPGrid sps={sps} />
+            </div>
           ))}
+
+          {soloSPs.length > 0 && (
+            <div className="flex flex-col gap-3">
+              {orgGroups.length > 0 && (
+                <div className="flex items-center gap-3">
+                  <span className="text-muted-foreground text-xs">Independent</span>
+                  <div className="bg-border h-px flex-1" />
+                </div>
+              )}
+              <SPGrid sps={soloSPs} />
+            </div>
+          )}
         </div>
       )}
     </div>

@@ -2,12 +2,15 @@
 
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
+import { zeroAddress } from 'viem'
 
 import { Button, buttonVariants } from '@/components/ui/button'
 import { DealStateBadge } from '@/components/deal-state-badge'
 import { DealDetailsCard } from '@/components/deal-details-card'
 import { DealAttestationCard } from '@/components/deal-attestation-card'
 import { TransferDatacapCard } from '@/components/transfer-datacap-card'
+import { InitDealCard } from '@/components/init-deal-card'
+import { AllocationVerificationCard } from '@/components/allocation-verification-card'
 import { useDeal } from '@/hooks/useDeal'
 import { useAcceptDeal } from '@/hooks/useAcceptDeal'
 import { useDealTermination } from '@/hooks/useDealTermination'
@@ -44,6 +47,9 @@ export function DealDetailPage({ dealId }: DealDetailPageProps) {
 
   const canAccept = deal.state === DealState.Proposed
   const canAllocate = deal.state === DealState.Accepted
+  const isCompleted = deal.state === DealState.Completed
+  // init is complete when validator is deployed and rail is initialized
+  const initComplete = deal.validator !== zeroAddress && deal.railId !== 0n
 
   async function handleAccept() {
     await acceptDeal()
@@ -62,10 +68,28 @@ export function DealDetailPage({ dealId }: DealDetailPageProps) {
         </div>
       </div>
 
-      <div className="grid gap-4 lg:grid-cols-2">
-        <DealDetailsCard deal={deal} termination={termination} />
-        <DealAttestationCard providerId={deal.provider} requirements={deal.requirements} />
-        {canAllocate && <TransferDatacapCard deal={deal} />}
+      <div className="columns-1 gap-4 lg:columns-2">
+        <div className="mb-4 break-inside-avoid">
+          <DealDetailsCard deal={deal} termination={termination} />
+        </div>
+        <div className="mb-4 break-inside-avoid">
+          <DealAttestationCard providerId={deal.provider} requirements={deal.requirements} />
+        </div>
+        {canAllocate && !initComplete && (
+          <div className="mb-4 break-inside-avoid">
+            <InitDealCard deal={deal} />
+          </div>
+        )}
+        {canAllocate && initComplete && (
+          <div className="mb-4 break-inside-avoid">
+            <TransferDatacapCard deal={deal} />
+          </div>
+        )}
+        {isCompleted && (
+          <div className="mb-4 break-inside-avoid">
+            <AllocationVerificationCard deal={deal} />
+          </div>
+        )}
       </div>
 
       {canAccept && (

@@ -3,16 +3,28 @@ import DevnetSPRegistryAbi from '@/abis/devnet/SPRegistry.json'
 import DevnetSLIOracleAbi from '@/abis/devnet/SLIOracle.json'
 import DevnetSLIScorerAbi from '@/abis/devnet/SLIScorer.json'
 import DevnetClientAbi from '@/abis/devnet/Client.json'
+import DevnetValidatorFactoryAbi from '@/abis/devnet/ValidatorFactory.json'
+import DevnetFileCoinPayAbi from '@/abis/devnet/FileCoinPay.json'
+import DevnetValidatorAbi from '@/abis/devnet/Validator.json'
+import DevnetUsdcAbi from '@/abis/devnet/USDC.json'
 import CalibnetPoRepMarketAbi from '@/abis/calibnet/PoRepMarket.json'
 import CalibnetSPRegistryAbi from '@/abis/calibnet/SPRegistry.json'
 import CalibnetSLIOracleAbi from '@/abis/calibnet/SLIOracle.json'
 import CalibnetSLIScorerAbi from '@/abis/calibnet/SLIScorer.json'
 import CalibnetClientAbi from '@/abis/calibnet/Client.json'
+import CalibnetValidatorFactoryAbi from '@/abis/calibnet/ValidatorFactory.json'
+import CalibnetFileCoinPayAbi from '@/abis/calibnet/FileCoinPay.json'
+import CalibnetValidatorAbi from '@/abis/calibnet/Validator.json'
+import CalibnetUsdcAbi from '@/abis/calibnet/USDC.json'
 import MainnetPoRepMarketAbi from '@/abis/mainnet/PoRepMarket.json'
 import MainnetSPRegistryAbi from '@/abis/mainnet/SPRegistry.json'
 import MainnetSLIOracleAbi from '@/abis/mainnet/SLIOracle.json'
 import MainnetSLIScorerAbi from '@/abis/mainnet/SLIScorer.json'
 import MainnetClientAbi from '@/abis/mainnet/Client.json'
+import MainnetValidatorFactoryAbi from '@/abis/mainnet/ValidatorFactory.json'
+import MainnetFileCoinPayAbi from '@/abis/mainnet/FileCoinPay.json'
+import MainnetValidatorAbi from '@/abis/mainnet/Validator.json'
+import MainnetUsdcAbi from '@/abis/mainnet/USDC.json'
 import { Address } from 'viem'
 
 export type ContractAddresses = {
@@ -89,6 +101,10 @@ export type NetworkAbis = {
   SLIOracleAbi: typeof DevnetSLIOracleAbi
   SLIScorerAbi: typeof DevnetSLIScorerAbi
   ClientAbi: typeof DevnetClientAbi
+  ValidatorFactoryAbi: typeof DevnetValidatorFactoryAbi
+  FileCoinPayAbi: typeof DevnetFileCoinPayAbi
+  ValidatorAbi: typeof DevnetValidatorAbi
+  UsdcAbi: typeof DevnetUsdcAbi
 }
 
 export const ABIS: Record<NetworkKey, NetworkAbis> = {
@@ -98,6 +114,10 @@ export const ABIS: Record<NetworkKey, NetworkAbis> = {
     SLIOracleAbi: DevnetSLIOracleAbi,
     SLIScorerAbi: DevnetSLIScorerAbi,
     ClientAbi: DevnetClientAbi,
+    ValidatorFactoryAbi: DevnetValidatorFactoryAbi,
+    FileCoinPayAbi: DevnetFileCoinPayAbi,
+    ValidatorAbi: DevnetValidatorAbi,
+    UsdcAbi: DevnetUsdcAbi,
   },
   calibnet: {
     PoRepMarketAbi: CalibnetPoRepMarketAbi,
@@ -105,6 +125,10 @@ export const ABIS: Record<NetworkKey, NetworkAbis> = {
     SLIOracleAbi: CalibnetSLIOracleAbi,
     SLIScorerAbi: CalibnetSLIScorerAbi,
     ClientAbi: CalibnetClientAbi,
+    ValidatorFactoryAbi: CalibnetValidatorFactoryAbi,
+    FileCoinPayAbi: CalibnetFileCoinPayAbi,
+    ValidatorAbi: CalibnetValidatorAbi,
+    UsdcAbi: CalibnetUsdcAbi,
   },
   mainnet: {
     PoRepMarketAbi: MainnetPoRepMarketAbi,
@@ -112,6 +136,10 @@ export const ABIS: Record<NetworkKey, NetworkAbis> = {
     SLIOracleAbi: MainnetSLIOracleAbi,
     SLIScorerAbi: MainnetSLIScorerAbi,
     ClientAbi: MainnetClientAbi,
+    ValidatorFactoryAbi: MainnetValidatorFactoryAbi,
+    FileCoinPayAbi: MainnetFileCoinPayAbi,
+    ValidatorAbi: MainnetValidatorAbi,
+    UsdcAbi: MainnetUsdcAbi,
   },
 }
 

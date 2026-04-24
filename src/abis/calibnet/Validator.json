@@ -1,0 +1,11 @@
+[
+  {
+    "type": "function",
+    "name": "createRail",
+    "inputs": [
+      { "name": "token", "type": "address", "internalType": "address" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  }
+]
