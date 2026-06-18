@@ -1,5 +1,7 @@
-import { getDefaultConfig } from '@rainbow-me/rainbowkit'
+import { getDefaultConfig, getDefaultWallets } from '@rainbow-me/rainbowkit'
 import { defineChain } from 'viem'
+import { ledgerWallet } from '@rainbow-me/rainbowkit/wallets';
+import { ledgerHardwareWallet } from './ledger-wallet'
 
 export const filecoin = defineChain({
   id: 314,
@@ -54,10 +56,16 @@ export function createWagmiConfig(devnetRpcUrl?: string) {
       })
     : localTestnet
 
+  const { wallets: defaultWallets } = getDefaultWallets()
+
   return getDefaultConfig({
     appName: 'PoRep Market',
-    projectId: '191fc4fc-7f2c-4c4f-b434-c0e98f9f509b',
+    projectId: '377898157ad3bfa57110511264772d65',
     chains: [devnet, filecoinCalibration, filecoin],
+    wallets: [
+      ...defaultWallets,
+      { groupName: 'Hardware', wallets: [ledgerHardwareWallet, ledgerWallet] },
+    ],
     ssr: true,
   })
 }

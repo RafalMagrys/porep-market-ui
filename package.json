@@ -8,13 +8,18 @@
     "start": "next start",
     "lint": "eslint",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "update-abis": "bash scripts/update-abis.sh"
   },
   "dependencies": {
     "@base-ui/react": "^1.4.0",
     "@hookform/resolvers": "^5.2.2",
+    "@ledgerhq/hw-app-eth": "^7.8.0",
+    "@ledgerhq/hw-transport-webhid": "^6.35.1",
+    "@ledgerhq/hw-transport-webusb": "^6.34.1",
     "@rainbow-me/rainbowkit": "^2.2.10",
     "@tanstack/react-query": "^5.99.0",
+    "@zondax/ledger-filecoin": "^3.0.7",
     "cborg": "^5.1.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",

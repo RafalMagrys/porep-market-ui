@@ -9,6 +9,7 @@ import { WagmiProvider } from 'wagmi'
 import { createWagmiConfig } from '@/lib/wagmi'
 import { loadDevnetSettings } from '@/lib/devnet-settings'
 import { NetworkProvider } from '@/contexts/network-context'
+import { LedgerAccountModal } from '@/components/ledger-account-modal'
 
 function RainbowKitWithTheme({ children }: { children: React.ReactNode }) {
   const { resolvedTheme } = useTheme()
@@ -32,6 +33,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
         <WagmiProvider config={wagmiConfig}>
           <RainbowKitWithTheme>
             <NetworkProvider>{children}</NetworkProvider>
+            <LedgerAccountModal />
           </RainbowKitWithTheme>
         </WagmiProvider>
       </QueryClientProvider>

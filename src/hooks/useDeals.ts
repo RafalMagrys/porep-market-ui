@@ -10,9 +10,6 @@ export function useDeals() {
   const client = usePublicClient()
   const [{ POREP_MARKET }, { PoRepMarketAbi }] = useContracts()
 
-  console.log('address', POREP_MARKET)
-  console.log('abi', PoRepMarketAbi)
-
   return useQuery({
     queryKey: ['deals', POREP_MARKET],
     queryFn: () =>
